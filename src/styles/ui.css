@@ -1,0 +1,288 @@
+/*
+ * Reusable controls (src/components/ui). Every value comes from the theme tokens in index.css,
+ * so changing a token restyles every screen.
+ */
+
+/* ---------- Mantine (date picker) mapped onto the project tokens ----------
+ * Mantine's CSS is loaded in a layer, so these unlayered rules always win. Pointing Mantine's
+ * variables at our tokens makes the calendar follow the same light and dark theme as the rest.
+ */
+:root[data-mantine-color-scheme] {
+  --mantine-color-body: var(--surface);
+  --mantine-color-text: var(--ink);
+  --mantine-color-dimmed: var(--muted);
+  --mantine-color-placeholder: var(--muted);
+  --mantine-color-default: var(--surface);
+  --mantine-color-default-hover: var(--page);
+  --mantine-color-default-color: var(--ink);
+  --mantine-color-default-border: var(--line);
+  --mantine-color-error: var(--danger);
+  --mantine-primary-color-filled: var(--green-700);
+  --mantine-primary-color-filled-hover: var(--green-800);
+  --mantine-primary-color-light: var(--pill-paid);
+  --mantine-primary-color-light-hover: var(--pill-paid);
+  --mantine-primary-color-light-color: var(--green-800);
+  --mantine-primary-color-contrast: var(--on-brand);
+}
+.date-field {
+  min-width: 0;
+}
+.date-field .input {
+  padding-left: 38px;
+}
+.date-field .form-field__hint,
+.date-field .form-field__error {
+  margin-top: 6px;
+}
+.mantine-Popover-dropdown {
+  border-color: var(--line);
+  box-shadow: 0 8px 30px rgb(15 42 51 / 0.15);
+}
+
+/* ---------- Button / ButtonLink ---------- */
+.btn {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: 0 var(--space-5);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn--block {
+  width: 100%;
+}
+.btn--sm {
+  min-height: 36px;
+  padding: 0 var(--space-3);
+  gap: 6px;
+  font-size: 12px;
+}
+.btn--primary {
+  background: var(--green-700);
+  color: var(--on-brand);
+}
+.btn--primary:hover:not(:disabled) {
+  background: var(--green-800);
+}
+.btn--outline {
+  background: var(--surface);
+  border-color: var(--line);
+  color: var(--ink);
+}
+.btn--outline:hover:not(:disabled) {
+  background: var(--page);
+}
+.btn--danger {
+  background: var(--surface);
+  border-color: var(--danger-border);
+  color: var(--danger);
+}
+.btn--danger:hover:not(:disabled) {
+  background: var(--danger-bg);
+}
+.btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+.btn[aria-busy='true'] {
+  cursor: progress;
+}
+
+/* ---------- TextButton ---------- */
+.text-button {
+  border: 0;
+  background: none;
+  padding: 0;
+  color: var(--green-700);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ---------- IconButton ---------- */
+.icon-btn {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+.icon-btn--lg {
+  width: 44px;
+  height: 44px;
+}
+.icon-btn:hover {
+  background: var(--page);
+}
+.icon-btn--muted {
+  color: var(--muted);
+}
+.icon-btn--edit {
+  color: var(--green-700);
+}
+.icon-btn--danger {
+  color: var(--danger);
+}
+.icon-btn--onDark {
+  color: var(--on-brand-muted);
+}
+.icon-btn--onDark:hover {
+  background: none;
+  color: var(--on-brand);
+}
+
+/* ---------- Form fields ---------- */
+.form-field {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+  min-width: 0;
+}
+.form-field--wide {
+  grid-column: 1 / -1;
+}
+.form-field label {
+  font-size: 12px;
+  font-weight: 600;
+}
+.form-field__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+.form-field__optional {
+  font-weight: 400;
+  color: var(--muted);
+}
+.form-field__hint {
+  font-size: 11px;
+  color: var(--muted);
+}
+.form-field__error {
+  font-size: 12px;
+  color: var(--danger);
+}
+
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.input-wrap__icon {
+  position: absolute;
+  left: var(--space-3);
+  display: grid;
+  color: var(--muted);
+  pointer-events: none;
+}
+.input-wrap__end {
+  position: absolute;
+  right: var(--space-1);
+  display: grid;
+}
+.input-wrap--icon .input {
+  padding-left: 38px;
+}
+.input-wrap--end .input {
+  padding-right: 44px;
+}
+
+.input {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 16px;
+}
+.input--area {
+  padding: var(--space-3);
+  min-height: 80px;
+  resize: vertical;
+}
+.input[aria-invalid='true'] {
+  border-color: var(--danger);
+}
+
+/* ---------- Checkbox ---------- */
+.check {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 13px;
+  min-height: 24px;
+}
+.check input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--green-700);
+}
+
+/* ---------- SearchField ---------- */
+.search {
+  flex: 0 1 280px;
+  min-width: 200px;
+}
+.search--wide {
+  flex-basis: 320px;
+}
+
+/* ---------- FilterChip ---------- */
+.chip {
+  min-height: 36px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.chip__count {
+  color: var(--muted);
+}
+.chip[aria-pressed='true'] {
+  background: var(--teal-900);
+  border-color: var(--teal-900);
+  color: var(--on-brand);
+}
+.chip[aria-pressed='true'] .chip__count {
+  color: var(--on-brand);
+}
+
+/* ---------- FormActions ---------- */
+.form-actions {
+  display: flex;
+  gap: var(--space-3);
+}
+
+@media (max-width: 560px) {
+  .search,
+  .search--wide {
+    flex-basis: 100%;
+  }
+  .form-actions {
+    flex-direction: column-reverse;
+  }
+  .form-actions .btn {
+    width: 100%;
+  }
+}

@@ -1,0 +1,46 @@
+.denied {
+  min-height: 60vh;
+  display: grid;
+  place-items: center;
+}
+.denied__card {
+  width: min(100%, 440px);
+  padding: var(--space-6) var(--space-5);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: 0 8px 30px rgb(15 42 51 / 0.1);
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+  text-align: center;
+}
+.denied__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--pill-denied);
+  color: var(--amber-800);
+  display: grid;
+  place-items: center;
+}
+.denied__code {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--amber-800);
+}
+.denied h1 {
+  font-size: 22px;
+}
+.denied__text {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.denied__text strong {
+  color: var(--ink);
+}
+.denied .btn-inline {
+  margin-top: var(--space-2);
+}
