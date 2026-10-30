@@ -84,11 +84,7 @@
       "status": "done",
       "priority": "medium",
       "description": "Record denial reasons and resubmit a denied claim.",
-      "files": [
-        "src/components/Dialogs/DenailModal.tsx",
-        "src/components/Dialogs/ConfirmDialog.tsx"
-      ],
-      "notes": "DenailModal.tsx is misspelled; rename to DenialModal.tsx when work starts."
+      "notes": "The empty placeholder dialog files were deleted. The denial reason dialog still has to be built; it is part of FE-019."
     },
     {
       "id": "FE-008",
@@ -119,7 +115,7 @@
       "status": "done",
       "priority": "medium",
       "description": "Shared fetch client using VITE_API_BASE_URL, with response validation at the boundary.",
-      "files": ["src/api/client.ts"]
+      "notes": "The empty placeholder src/api/client.ts was deleted. Screens use sample data in the other src/api files until the backend exists; a shared client is still to be written."
     },
     {
       "id": "FE-011",
@@ -224,12 +220,8 @@
       "type": "story",
       "status": "todo",
       "priority": "high",
-      "description": "Make the claim details buttons work: record payment, deny with a reason, delete with confirmation. Needs backend endpoints or an in-memory mock, plus the denial modal and confirm dialog.",
-      "files": [
-        "src/pages/ClaimDetails.tsx",
-        "src/components/Dialogs/DenailModal.tsx",
-        "src/components/Dialogs/ConfirmDialog.tsx"
-      ]
+      "description": "Make the claim details buttons work: record payment, deny with a reason, delete with confirmation. Needs backend endpoints or an in-memory mock, plus a denial reason dialog and a confirm dialog, which still have to be created (the empty placeholder files were deleted).",
+      "files": ["src/pages/ClaimDetails.tsx"]
     },
     {
       "id": "FE-020",
