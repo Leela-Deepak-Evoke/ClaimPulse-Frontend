@@ -1,0 +1,267 @@
+/*
+ * Login screen: hospital-themed backdrop and motion.
+ * The shapes below are static and subtle; every animation lives inside the
+ * prefers-reduced-motion block at the bottom, so reduced-motion visitors get no movement.
+ */
+
+.login__brand {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.login__brand > .logo,
+.login__brand > .login__hero {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- Backdrop ---------- */
+.pulse-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.pulse-bg::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -25%;
+  width: 75%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--mint-400) 20%, transparent),
+    transparent 65%
+  );
+}
+
+.pulse-bg__ecg {
+  position: absolute;
+  inset: auto 0 5% 0;
+  width: 100%;
+  height: 110px;
+}
+.pulse-bg__ecg path {
+  fill: none;
+  stroke: var(--mint-400);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.pulse-bg__track {
+  stroke-width: 2;
+  opacity: 0.16;
+}
+.pulse-bg__beat {
+  stroke-width: 3;
+  stroke-dasharray: 0.22 2;
+  stroke-dashoffset: 0.22;
+  opacity: 0;
+  filter: drop-shadow(0 0 6px var(--mint-400));
+}
+
+.pulse-bg__cross {
+  position: absolute;
+  top: 100%;
+  width: var(--size);
+  height: var(--size);
+  opacity: 0;
+}
+.pulse-bg__cross::before,
+.pulse-bg__cross::after {
+  content: '';
+  position: absolute;
+  border-radius: 2px;
+  background: var(--mint-400);
+}
+.pulse-bg__cross::before {
+  inset: 0 35%;
+}
+.pulse-bg__cross::after {
+  inset: 35% 0;
+}
+
+@media (max-width: 900px) {
+  .pulse-bg__ecg {
+    height: 70px;
+    bottom: 0;
+  }
+}
+
+/* ---------- Motion ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .pulse-bg::before {
+    animation: pulse-glow 5s ease-in-out infinite;
+  }
+  .pulse-bg__beat {
+    opacity: 1;
+    animation: ecg-sweep 3.4s linear infinite;
+  }
+  .pulse-bg__cross {
+    animation: cross-drift var(--duration) linear var(--delay) infinite;
+  }
+
+  .login__brand .logo__mark {
+    position: relative;
+    animation: logo-beat 2.4s ease-in-out infinite;
+  }
+  .login__brand .logo__mark::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 2px solid var(--mint-400);
+    animation: logo-ring 2.4s ease-out infinite;
+  }
+
+  .login__brand .logo {
+    animation: rise 0.6s ease-out both;
+  }
+  .login__hero > * {
+    animation: rise 0.7s ease-out both;
+  }
+  .login__hero > :nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .login__hero > :nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .login__hero > :nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .login__hero > :nth-child(4) {
+    animation-delay: 0.4s;
+  }
+  .features li {
+    animation: rise 0.6s ease-out both;
+  }
+  .features li:nth-child(1) {
+    animation-delay: 0.55s;
+  }
+  .features li:nth-child(2) {
+    animation-delay: 0.65s;
+  }
+  .features li:nth-child(3) {
+    animation-delay: 0.75s;
+  }
+  .login__panel .card {
+    animation: rise 0.7s ease-out 0.15s both;
+  }
+
+  .lifecycle__flow .pill {
+    animation: pill-glow 6s ease-in-out infinite;
+  }
+  .lifecycle__flow li:nth-child(1) .pill {
+    animation-delay: 1s;
+  }
+  .lifecycle__flow li:nth-child(2) .pill {
+    animation-delay: 2.2s;
+  }
+  .lifecycle__flow li:nth-child(3) .pill {
+    animation-delay: 3.4s;
+  }
+  .lifecycle__flow li:nth-child(4) .pill {
+    animation-delay: 4.6s;
+  }
+
+  .login .alert {
+    animation: shake 0.4s ease-in-out;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes ecg-sweep {
+  to {
+    stroke-dashoffset: -1;
+  }
+}
+
+@keyframes cross-drift {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(0deg);
+  }
+  10%,
+  90% {
+    opacity: 0.28;
+  }
+  50% {
+    transform: translate(14px, -50vh) rotate(90deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-8px, -100vh) rotate(180deg);
+  }
+}
+
+@keyframes logo-beat {
+  0%,
+  28%,
+  70%,
+  100% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.12);
+  }
+  42% {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes logo-ring {
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(1.9);
+  }
+}
+
+@keyframes pill-glow {
+  0%,
+  18%,
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+    transform: scale(1);
+  }
+  8% {
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--mint-400) 45%, transparent);
+    transform: scale(1.07);
+  }
+}
+
+@keyframes shake {
+  20%,
+  60% {
+    transform: translateX(-6px);
+  }
+  40%,
+  80% {
+    transform: translateX(6px);
+  }
+}

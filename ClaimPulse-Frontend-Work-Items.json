@@ -1,0 +1,467 @@
+{
+  "project": "ClaimPulse",
+  "scope": "frontend",
+  "updated": "2026-10-30",
+  "statusValues": ["todo", "in-progress", "awaiting-verification", "done", "blocked"],
+  "workItems": [
+    {
+      "id": "FE-001",
+      "title": "Login screen (responsive, web to mobile)",
+      "type": "story",
+      "status": "done",
+      "priority": "high",
+      "description": "Sign-in page matching the mockup: brand panel, claim lifecycle, sign-in card, demo accounts. Collapses to a stacked layout below 900px.",
+      "acceptanceCriteria": [
+        "Layout matches the mockup on desktop",
+        "Usable at 375px, 768px and 1280px widths",
+        "Email and password validation with inline errors",
+        "Show/hide password toggle and keep-me-signed-in option",
+        "Wrong credentials and inactive accounts show an error"
+      ],
+      "files": ["src/pages/Login.tsx", "src/index.css", "src/api/auth.ts"],
+      "notes": "Awaiting human verification before commit."
+    },
+    {
+      "id": "FE-002",
+      "title": "Default redirect to login when not authenticated",
+      "type": "story",
+      "status": "done",
+      "priority": "high",
+      "description": "Any URL redirects to /login without a session; /login redirects to / when signed in.",
+      "files": [
+        "src/App.tsx",
+        "src/app/usePath.ts",
+        "src/auth/AuthContext.tsx",
+        "src/auth/session.ts"
+      ],
+      "notes": "Uses a small history-based router; no react-router-dom dependency."
+    },
+    {
+      "id": "FE-003",
+      "title": "Replace mock login with real backend auth",
+      "type": "task",
+      "status": "done",
+      "priority": "high",
+      "description": "src/api/auth.ts checks hard-coded demo accounts. Swap for a call to a FastAPI /auth/login endpoint and move session handling to the server.",
+      "files": ["src/api/auth.ts", "src/auth/session.ts"]
+    },
+    {
+      "id": "FE-004",
+      "title": "Decide on router library",
+      "type": "decision",
+      "status": "done",
+      "priority": "medium",
+      "description": "Keep the small custom router or add react-router-dom before building Claims, Patients, Payers and Claim details pages. Adding it needs a dependency-audit."
+    },
+    {
+      "id": "FE-005",
+      "title": "Dashboard page",
+      "type": "story",
+      "status": "done",
+      "priority": "medium",
+      "description": "Billed vs collected and denial rate at a glance. Currently a placeholder that shows the signed-in user and a sign-out button.",
+      "files": ["src/pages/Dashboard.tsx", "src/api/dashboard.ts", "src/components/StatCard.tsx"]
+    },
+    {
+      "id": "FE-006",
+      "title": "Claims list and claim details",
+      "type": "story",
+      "status": "done",
+      "priority": "medium",
+      "description": "Track claims by patient, payer and status; claim details and claim form.",
+      "files": [
+        "src/pages/Claims.tsx",
+        "src/pages/ClaimDetails.tsx",
+        "src/pages/ClaimForm.tsx",
+        "src/api/claims.ts",
+        "src/components/StatusBadge.tsx"
+      ]
+    },
+    {
+      "id": "FE-007",
+      "title": "Denial reason capture and resubmit",
+      "type": "story",
+      "status": "done",
+      "priority": "medium",
+      "description": "Record denial reasons and resubmit a denied claim.",
+      "files": [
+        "src/components/Dialogs/DenailModal.tsx",
+        "src/components/Dialogs/ConfirmDialog.tsx"
+      ],
+      "notes": "DenailModal.tsx is misspelled; rename to DenialModal.tsx when work starts."
+    },
+    {
+      "id": "FE-008",
+      "title": "Patients and Payers pages",
+      "type": "story",
+      "status": "done",
+      "priority": "low",
+      "files": [
+        "src/pages/Patients.tsx",
+        "src/pages/Payers.tsx",
+        "src/api/patients.ts",
+        "src/api/payers.ts"
+      ]
+    },
+    {
+      "id": "FE-009",
+      "title": "Navbar and app shell",
+      "type": "task",
+      "status": "done",
+      "priority": "medium",
+      "description": "Navigation for authenticated pages, including sign out and role display.",
+      "files": ["src/components/Navbar.tsx"]
+    },
+    {
+      "id": "FE-010",
+      "title": "API client with Zod validation",
+      "type": "task",
+      "status": "done",
+      "priority": "medium",
+      "description": "Shared fetch client using VITE_API_BASE_URL, with response validation at the boundary.",
+      "files": ["src/api/client.ts"]
+    },
+    {
+      "id": "FE-011",
+      "title": "Forgot password flow",
+      "type": "story",
+      "status": "done",
+      "priority": "low",
+      "description": "The Forgot password link on the login screen currently does nothing."
+    },
+    {
+      "id": "FE-012",
+      "title": "Fix lint warning in AuthContext",
+      "type": "bug",
+      "status": "done",
+      "priority": "low",
+      "description": "react(only-export-components): AuthContext.tsx exports both the provider and the useAuth hook. Move the hook to its own file.",
+      "files": ["src/auth/AuthContext.tsx"]
+    },
+    {
+      "id": "FE-013",
+      "title": "Browser tab icon matches the login screen logo",
+      "type": "task",
+      "status": "done",
+      "priority": "low",
+      "description": "Replace the favicon with the ClaimPulse logo mark: white pulse line on a green rounded square.",
+      "files": ["public/favicon.svg"]
+    },
+    {
+      "id": "FE-014",
+      "title": "Remove 'Demo project · React · FastAPI · PostgreSQL' text from the UI",
+      "type": "task",
+      "status": "done",
+      "priority": "low",
+      "description": "Removed the footnote from the login brand panel along with its CSS. The text no longer appears anywhere in the UI.",
+      "files": ["src/pages/Login.tsx", "src/index.css"]
+    },
+    {
+      "id": "FE-015",
+      "title": "README with project overview",
+      "type": "task",
+      "status": "done",
+      "priority": "low",
+      "description": "Added an About section (purpose, user capabilities, tech stack, build status) to the frontend README and updated the layout section.",
+      "files": ["README.md"]
+    },
+    {
+      "id": "FE-016",
+      "title": "Dashboard screen with app shell (sidebar, responsive)",
+      "type": "story",
+      "status": "done",
+      "priority": "high",
+      "description": "Sidebar navigation with user footer and sign out, page header with New claim button, four stat cards, claims by payer, billed vs collected with denial reasons, and recent claims table. Sidebar becomes a slide-in menu on tablet and mobile. Uses sample data until the backend dashboard endpoint exists.",
+      "files": [
+        "src/pages/Dashboard.tsx",
+        "src/api/dashboard.ts",
+        "src/App.tsx",
+        "src/app/router.ts",
+        "src/components/AppShell.tsx",
+        "src/components/Navbar.tsx",
+        "src/components/Link.tsx",
+        "src/components/StatCard.tsx",
+        "src/components/StatusBadge.tsx",
+        "src/components/icons.tsx",
+        "src/styles/shell.css"
+      ]
+    },
+    {
+      "id": "FE-017",
+      "title": "Claims list screen",
+      "type": "story",
+      "status": "done",
+      "priority": "high",
+      "description": "Claims table with claim, patient, payer, service date, CPT/ICD, billed, paid and status (with denial reason). Status filter chips with counts, search by patient or claim ID, and a showing-N-of-M footer. Table scrolls sideways on small screens. Uses sample data until the backend claims endpoint exists.",
+      "files": [
+        "src/pages/Claims.tsx",
+        "src/api/claims.ts",
+        "src/app/format.ts",
+        "src/styles/claims.css",
+        "src/components/icons.tsx",
+        "src/App.tsx"
+      ]
+    },
+    {
+      "id": "FE-018",
+      "title": "Claim details screen",
+      "type": "story",
+      "status": "awaiting-verification",
+      "priority": "high",
+      "description": "Route /claims/:id with back link, claim ID and status badge, Delete claim button, claim details, patient and payer cards, Update status panel (Mark paid / Deny) and activity timeline. Claim IDs in the Claims list now link here, and Claims stays highlighted in the sidebar. Uses sample data until the backend endpoints exist. The Mark paid, Deny and Delete claim buttons are visual only for now.",
+      "files": [
+        "src/pages/ClaimDetails.tsx",
+        "src/api/claimDetail.ts",
+        "src/styles/claim-details.css",
+        "src/App.tsx",
+        "src/components/Navbar.tsx",
+        "src/pages/Claims.tsx"
+      ]
+    },
+    {
+      "id": "FE-019",
+      "title": "Wire up Mark paid, Deny (with reason) and Delete claim actions",
+      "type": "story",
+      "status": "todo",
+      "priority": "high",
+      "description": "Make the claim details buttons work: record payment, deny with a reason, delete with confirmation. Needs backend endpoints or an in-memory mock, plus the denial modal and confirm dialog.",
+      "files": [
+        "src/pages/ClaimDetails.tsx",
+        "src/components/Dialogs/DenailModal.tsx",
+        "src/components/Dialogs/ConfirmDialog.tsx"
+      ]
+    },
+    {
+      "id": "FE-020",
+      "title": "New claim screen",
+      "type": "story",
+      "status": "done",
+      "priority": "high",
+      "description": "Form at /claims/new with patient and payer selects, service date, billed amount, CPT, ICD and optional notes, plus a What happens next card. Required fields are checked and billed amount must be greater than zero. Create claim saves a Submitted claim (in memory for now), shows it in the claims list and opens its details. Cancel returns to the claims list.",
+      "files": [
+        "src/pages/ClaimForm.tsx",
+        "src/api/claims.ts",
+        "src/api/lookups.ts",
+        "src/api/claimDetail.ts",
+        "src/pages/ClaimDetails.tsx",
+        "src/styles/claim-form.css",
+        "src/App.tsx"
+      ],
+      "notes": "Created claims are kept in memory and are lost on reload. The dashboard figures do not include them yet."
+    },
+    {
+      "id": "FE-021",
+      "title": "Highlight the update status value on claim details",
+      "type": "task",
+      "status": "awaiting-verification",
+      "priority": "low",
+      "description": "In the Update status card on claim details, the status word in the line This claim is ... (shown for Paid and Denied claims) is now a coloured status badge, matching the badge beside the claim ID, instead of plain text.",
+      "files": ["src/pages/ClaimDetails.tsx", "src/styles/claim-details.css"]
+    },
+    {
+      "id": "FE-022",
+      "title": "Patients list screen",
+      "type": "story",
+      "status": "done",
+      "priority": "high",
+      "description": "Patients table with avatar and name, date of birth, gender, phone, member ID, claim count and edit/delete icons, a search by name or member ID, and a showing-N-of-M footer. Patient details now come from one shared sample list that the claim details and New claim screens also use, so member IDs and birth dates match everywhere. Claim counts are calculated from the claims data. Blue Cross payer code changed from BCB to BCBS to match the member IDs.",
+      "files": [
+        "src/pages/Patients.tsx",
+        "src/api/patients.ts",
+        "src/api/claimDetail.ts",
+        "src/api/lookups.ts",
+        "src/styles/patients.css",
+        "src/components/icons.tsx",
+        "src/App.tsx"
+      ],
+      "notes": "Add patient, edit and delete buttons are visual only; tracked in FE-023."
+    },
+    {
+      "id": "FE-023",
+      "title": "Delete patient",
+      "type": "story",
+      "status": "todo",
+      "priority": "medium",
+      "description": "Make the row delete icon on the Patients page work, with a confirmation. Editing is done in FE-027 and adding in FE-028. No design provided yet for the confirmation."
+    },
+    {
+      "id": "FE-024",
+      "title": "Payers screen (admin only)",
+      "type": "story",
+      "status": "awaiting-verification",
+      "priority": "high",
+      "description": "Payer cards with code badge, name, phone, claims, denied, billed, collected and a denial-rate bar, with an Admin only badge and Add payer button. Figures are calculated from the claims data. Only the Admin role sees the Payers link, and Billers who open /payers are sent to the dashboard. Payer details now come from one shared sample list used by claim details and New claim.",
+      "files": [
+        "src/pages/Payers.tsx",
+        "src/api/payers.ts",
+        "src/api/claimDetail.ts",
+        "src/api/lookups.ts",
+        "src/styles/payers.css",
+        "src/components/Navbar.tsx",
+        "src/App.tsx",
+        "src/app/format.ts"
+      ],
+      "notes": "The admin-only restriction is enforced in the browser only. The backend must enforce it too. The card delete icons are visual only; tracked in FE-025. The unused PagePlaceholder component was removed."
+    },
+    {
+      "id": "FE-025",
+      "title": "Delete payer",
+      "type": "story",
+      "status": "todo",
+      "priority": "medium",
+      "description": "Make the card delete icon on the Payers page work, with a confirmation. No design provided yet for the confirmation."
+    },
+    {
+      "id": "FE-026",
+      "title": "Add payer screen (admin only)",
+      "type": "story",
+      "status": "done",
+      "priority": "high",
+      "description": "Form at /payers/new with payer name, payer code and contact phone, reached from the Add payer button. Name is required, code must be 2 to 6 letters or numbers (saved in upper case), phone must look like a phone number, and a duplicate name or code is rejected. Add payer saves in memory, returns to the Payers page and makes the payer available in the New claim list. Cancel and Back to payers return to the Payers page. Admin only, like the Payers page.",
+      "files": [
+        "src/pages/PayerForm.tsx",
+        "src/components/FormField.tsx",
+        "src/api/payers.ts",
+        "src/api/lookups.ts",
+        "src/api/claimDetail.ts",
+        "src/pages/Payers.tsx",
+        "src/pages/ClaimForm.tsx",
+        "src/components/Navbar.tsx",
+        "src/App.tsx",
+        "src/styles/claim-form.css"
+      ],
+      "notes": "No design was provided; the screen follows the New claim form layout. Added payers are kept in memory and lost on reload. Admin-only is enforced in the browser only; the backend must enforce it too."
+    },
+    {
+      "id": "FE-027",
+      "title": "Edit patient in a side panel",
+      "type": "story",
+      "status": "awaiting-verification",
+      "priority": "high",
+      "description": "The pencil icon on a patient row opens a slide-in side panel with the patient's full name, date of birth, gender, phone and member ID. Fields are validated (required, no future birth date, phone format, member ID 5 to 12 letters or numbers saved in upper case, member ID must be unique). Save changes updates the Patients list; renaming a patient also renames them on their claims. The panel closes with the X button, Cancel, Escape or a click outside, keeps keyboard focus inside while open, and returns focus to the pencil icon. Full width on small screens.",
+      "files": [
+        "src/components/SidePanel.tsx",
+        "src/components/PatientEditPanel.tsx",
+        "src/pages/Patients.tsx",
+        "src/api/patients.ts",
+        "src/api/claims.ts",
+        "src/api/claimDetail.ts",
+        "src/api/lookups.ts",
+        "src/app/validation.ts",
+        "src/pages/PayerForm.tsx",
+        "src/styles/side-panel.css",
+        "src/components/icons.tsx"
+      ],
+      "notes": "No design was provided for the panel; it reuses the form styling from New claim. Edits are kept in memory and lost on reload. The dashboard sample figures do not change."
+    },
+    {
+      "id": "FE-028",
+      "title": "Add patient screen",
+      "type": "story",
+      "status": "done",
+      "priority": "high",
+      "description": "Form at /patients/new with full name, date of birth, gender, phone and member ID, reached from the Add patient button, with a What happens next card. Same validation as the edit panel. Add patient saves in memory, returns to the Patients page where the new patient shows with zero claims, and makes them available in the New claim patient list. Cancel and Back to patients return to the Patients list. The patient fields and validation are now shared with the edit panel.",
+      "files": [
+        "src/pages/PatientForm.tsx",
+        "src/components/PatientFields.tsx",
+        "src/app/patientForm.ts",
+        "src/components/PatientEditPanel.tsx",
+        "src/api/patients.ts",
+        "src/pages/Patients.tsx",
+        "src/components/Navbar.tsx",
+        "src/App.tsx"
+      ],
+      "notes": "No design was provided; the screen follows the Add payer layout. Patient names must now be unique (also when editing), because claims are matched to patients by name. New patients are kept in memory and lost on reload."
+    },
+    {
+      "id": "FE-029",
+      "title": "Access denied (403) screen for admin-only pages",
+      "type": "story",
+      "status": "awaiting-verification",
+      "priority": "high",
+      "description": "When a Biller opens /payers or /payers/new, the app now stays on that address and shows an Access denied screen inside the normal layout (lock icon, ERROR 403, a message naming the signed-in user and role, who to ask, and a Back to dashboard button). This replaces the earlier silent redirect to the dashboard. The Payers link stays hidden from Billers.",
+      "files": [
+        "src/pages/AccessDenied.tsx",
+        "src/styles/access-denied.css",
+        "src/App.tsx",
+        "src/components/icons.tsx",
+        "src/index.css"
+      ],
+      "notes": "The admin contacts (Ananya Reddy, Rohit Sharma) are sample values taken from the design; Rohit Sharma is not one of the demo accounts. The restriction is enforced in the browser only; the backend must return 403 as well."
+    },
+    {
+      "id": "FE-030",
+      "title": "Biller view of Claims (notice, no delete)",
+      "type": "story",
+      "status": "awaiting-verification",
+      "priority": "high",
+      "description": "When a Biller opens the Claims list, a blue notice appears above the table: You're signed in as a Biller. You can create and update claims; only admins can delete them. Billers also no longer see the Delete claim button on claim details; Admins still do and see no notice.",
+      "files": [
+        "src/pages/Claims.tsx",
+        "src/pages/ClaimDetails.tsx",
+        "src/styles/claims.css",
+        "src/components/icons.tsx",
+        "src/index.css"
+      ],
+      "notes": "Enforced in the browser only; the backend must reject claim deletes from Billers. The Delete claim button is still visual only (FE-019). In your screenshot some patient names looked orange; I left names in the normal text colour."
+    },
+    {
+      "id": "FE-031",
+      "title": "Reusable themed input components",
+      "type": "story",
+      "status": "done",
+      "priority": "high",
+      "description": "Every control the user interacts with is now a shared component in src/components/ui, styled in one stylesheet (src/styles/ui.css) that uses only the theme tokens: Button, ButtonLink, IconButton, TextButton, TextField (optional icon, end adornment, hint, error, label aside), SelectField, TextAreaField, Checkbox, SearchField, FilterChip and FormActions. All screens (Login, Dashboard, Claims, Claim details, New claim, Patients, Payers, Add patient, Add payer, Access denied, edit patient panel, sidebar) now use them instead of raw buttons and inputs. Fields generate their own ids and wire up labels, hints, errors and aria-invalid automatically. The old per-screen button, input, search and chip styles were removed. Inputs are now 44px tall everywhere.",
+      "files": [
+        "src/components/ui/",
+        "src/styles/ui.css",
+        "src/pages/Login.tsx",
+        "src/pages/ClaimForm.tsx",
+        "src/pages/PayerForm.tsx",
+        "src/components/PatientFields.tsx",
+        "src/pages/Claims.tsx",
+        "src/pages/Patients.tsx",
+        "src/pages/Payers.tsx",
+        "src/pages/Dashboard.tsx",
+        "src/pages/ClaimDetails.tsx"
+      ],
+      "notes": "Visual output should be the same as before apart from input height (forms and search were 40px, now 44px). The component-library skills named in CLAUDE.md could not be loaded in this session, so the components were built directly following the repo rules. The page-level scrim button in AppShell is not a form control and stays as plain markup."
+    },
+    {
+      "id": "FE-032",
+      "title": "Mantine date picker for every date input",
+      "type": "story",
+      "status": "awaiting-verification",
+      "priority": "high",
+      "description": "Added @mantine/core, @mantine/dates, @mantine/hooks and dayjs (all MIT, npm audit clean). A new DateField component in src/components/ui wraps Mantine's DateInput and is used for Service date (New claim) and Date of birth (Add patient and the edit patient panel), so no screen uses the browser's native date input any more. It shows dates as Aug 6, 2026, opens a calendar, and also accepts typed dates (Aug 6, 2026, 2026-08-06 or 8/6/2026). Date of birth cannot be in the future and opens on the decade view. The calendar uses the project's colours, fonts and radius, including dark mode, by mapping Mantine's variables onto the project tokens in src/styles/ui.css; Mantine's own CSS is loaded in a CSS layer so the project styles always win.",
+      "files": [
+        "src/components/ui/DateField.tsx",
+        "src/app/mantineTheme.ts",
+        "src/app/dateParser.ts",
+        "src/App.tsx",
+        "src/main.tsx",
+        "src/styles/ui.css",
+        "src/pages/ClaimForm.tsx",
+        "src/components/PatientFields.tsx",
+        "src/test/setup.ts",
+        "package.json"
+      ],
+      "notes": "The dependency-audit skill named in CLAUDE.md could not be loaded in this session, so the check was done by hand (licences, peer dependencies, npm audit). Mantine adds about 200 kB to the JavaScript (now 564 kB, 168 kB gzipped) and the CSS is now 297 kB because the full Mantine stylesheet is loaded; importing only the component styles used would shrink it."
+    },
+    {
+      "id": "FE-033",
+      "title": "Hospital-themed animations on the login screen",
+      "type": "story",
+      "status": "done",
+      "priority": "low",
+      "description": "The login brand panel now has an ECG heartbeat line with a glowing pulse sweeping across it, medical crosses drifting upward, and a softly pulsing glow. The ClaimPulse logo beats like a heart with an expanding ring. The headline, text, claim lifecycle, feature list and sign-in card fade up one after another, the claim lifecycle pills light up in turn (Submitted, Paid, Denied, Resubmitted), and a failed sign-in message gives a short shake. Pure CSS and SVG, no new dependencies. All movement is switched off for visitors who set reduced motion in their system; the faint ECG line stays as a static decoration.",
+      "files": [
+        "src/components/PulseBackdrop.tsx",
+        "src/styles/login-motion.css",
+        "src/pages/Login.tsx",
+        "src/main.tsx"
+      ],
+      "notes": "Animations cannot be checked by the automated tests; verify by eye."
+    }
+  ]
+}
